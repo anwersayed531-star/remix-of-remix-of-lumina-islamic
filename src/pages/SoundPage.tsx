@@ -176,7 +176,12 @@ const SoundPage = () => {
               className="w-20 h-20 mx-auto mb-3 rounded-full flex items-center justify-center overflow-hidden"
               style={{ backgroundColor: currentReciterInfo.color }}
             >
-              <img src={logoImg} alt="القارئ" className="w-full h-full object-cover" />
+              <img 
+                src={currentReciterInfo.imageUrl || logoImg} 
+                alt={currentReciterInfo.nameAr} 
+                className="w-full h-full object-cover" 
+                onError={(e) => { e.currentTarget.src = logoImg; }}
+              />
             </div>
             <h3 className="font-amiri text-xl font-bold">
               {currentReciterInfo.nameAr}
@@ -263,7 +268,12 @@ const SoundPage = () => {
                 className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
                 style={{ backgroundColor: reciter.color }}
               >
-                <img src={logoImg} alt={reciter.nameAr} className="w-full h-full object-cover" />
+                <img 
+                  src={reciter.imageUrl || logoImg} 
+                  alt={reciter.nameAr} 
+                  className="w-full h-full object-cover" 
+                  onError={(e) => { e.currentTarget.src = logoImg; }}
+                />
               </div>
               <div className="flex-1">
                 <h4 className="font-cairo font-semibold">{reciter.nameAr}</h4>
