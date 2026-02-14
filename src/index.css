@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Almarai:wght@300;400;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Lateef:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&family=Readex+Pro:wght@300;400;500;600;700&family=Changa:wght@300;400;500;600;700&family=El+Messiri:wght@400;500;600;700&family=Mada:wght@300;400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Markazi+Text:wght@400;500;600;700&family=Harmattan:wght@400;500;600;700&family=Aref+Ruqaa:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Islamic App Design System - Islami
+   Clean, modern, elegant design with white background and black text
+   RTL support for Arabic language
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    --primary: 150 60% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 80% 50%;
+    --secondary-foreground: 0 0% 5%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 150 40% 95%;
+    --accent-foreground: 150 60% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 150 60% 35%;
+
+    --radius: 0.75rem;
+
+    /* Islamic accent colors */
+    --islamic-green: 150 60% 35%;
+    --islamic-gold: 45 80% 50%;
+    --islamic-light: 150 40% 97%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 150 60% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 150 40% 95%;
+    --sidebar-accent-foreground: 150 60% 25%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 150 60% 35%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 150 60% 45%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 45 70% 45%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 150 30% 15%;
+    --accent-foreground: 150 60% 80%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 150 60% 45%;
+
+    --islamic-green: 150 60% 45%;
+    --islamic-gold: 45 70% 55%;
+    --islamic-light: 150 20% 10%;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 150 60% 45%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 150 30% 15%;
+    --sidebar-accent-foreground: 150 60% 80%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 150 60% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    direction: rtl;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Cairo', 'Amiri', sans-serif;
+  }
+
+  /* Arabic typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Amiri', serif;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Font families */
+  .font-amiri {
+    font-family: 'Amiri', serif;
+  }
+
+  .font-cairo {
+    font-family: 'Cairo', sans-serif;
+  }
+
+  .font-tajawal {
+    font-family: 'Tajawal', sans-serif;
+  }
+
+  .font-almarai {
+    font-family: 'Almarai', sans-serif;
+  }
+
+  .font-noto-naskh {
+    font-family: 'Noto Naskh Arabic', serif;
+  }
+
+  .font-noto-sans {
+    font-family: 'Noto Sans Arabic', sans-serif;
+  }
+
+  .font-lateef {
+    font-family: 'Lateef', serif;
+  }
+
+  .font-scheherazade {
+    font-family: 'Scheherazade New', serif;
+  }
+
+  .font-readex {
+    font-family: 'Readex Pro', sans-serif;
+  }
+
+  .font-changa {
+    font-family: 'Changa', sans-serif;
+  }
+
+  .font-messiri {
+    font-family: 'El Messiri', sans-serif;
+  }
+
+  .font-mada {
+    font-family: 'Mada', sans-serif;
+  }
+
+  .font-reem-kufi {
+    font-family: 'Reem Kufi', sans-serif;
+  }
+
+  .font-markazi {
+    font-family: 'Markazi Text', serif;
+  }
+
+  .font-harmattan {
+    font-family: 'Harmattan', sans-serif;
+  }
+
+  .font-aref-ruqaa {
+    font-family: 'Aref Ruqaa', serif;
+  }
+
+  .text-islamic-green {
+    color: hsl(var(--islamic-green));
+  }
+
+  .bg-islamic-green {
+    background-color: hsl(var(--islamic-green));
+  }
+
+  .text-islamic-gold {
+    color: hsl(var(--islamic-gold));
+  }
+
+  .bg-islamic-gold {
+    background-color: hsl(var(--islamic-gold));
+  }
+
+  .bg-islamic-light {
+    background-color: hsl(var(--islamic-light));
+  }
+
+  /* Islamic patterns - Multiple variations */
+  .islamic-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23168d5a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pattern-geometric {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23168d5a' fill-opacity='0.06'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pattern-stars {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.08'%3E%3Cpath d='M30 30l5-15 5 15 15-5-15 5-5 15-5-15-15 5 15-5zm0-30l2.5 7.5L40 10l-7.5 2.5L30 20l-2.5-7.5L20 10l7.5-2.5L30 0zM0 30l2.5-7.5L10 20l-7.5-2.5L0 10l2.5 7.5L10 20l-7.5 2.5L0 30zm60 0l-2.5-7.5L50 20l7.5-2.5L60 10l-2.5 7.5L50 20l7.5 2.5L60 30zM30 60l-2.5-7.5L20 50l7.5-2.5L30 40l2.5 7.5L40 50l-7.5 2.5L30 60z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pattern-arabesque {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23168d5a' fill-opacity='0.05'%3E%3Ccircle cx='50' cy='50' r='3'/%3E%3Ccircle cx='0' cy='0' r='3'/%3E%3Ccircle cx='100' cy='0' r='3'/%3E%3Ccircle cx='0' cy='100' r='3'/%3E%3Ccircle cx='100' cy='100' r='3'/%3E%3Cpath d='M50 0c0 27.614-22.386 50-50 50M100 50c-27.614 0-50 22.386-50 50M50 100c0-27.614 22.386-50 50-50M0 50c27.614 0 50-22.386 50-50' stroke='%23168d5a' stroke-opacity='0.03' stroke-width='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pattern-hexagon {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23168d5a' fill-opacity='0.04'%3E%3Cpath d='M15 0l15 8.66V26l-15 8.66L0 26V8.66L15 0zm30 0l15 8.66V26l-15 8.66L30 26V8.66L30 0zM15 26l15 8.66V52l-15 8.66L0 52V34.66L15 26z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pattern-diamonds {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.06'%3E%3Cpath d='M20 0l20 20-20 20L0 20 20 0zm0 5L5 20l15 15 15-15L20 5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pattern-mosaic {
+    background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23168d5a' fill-opacity='0.05'%3E%3Cpath d='M12 0h24v12H12V0zm0 36h24v12H12V36zM0 12h12v24H0V12zm36 0h12v24H36V12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .pattern-circles {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23168d5a' stroke-opacity='0.05' stroke-width='1'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3Ccircle cx='0' cy='0' r='10'/%3E%3Ccircle cx='60' cy='0' r='10'/%3E%3Ccircle cx='0' cy='60' r='10'/%3E%3Ccircle cx='60' cy='60' r='10'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Gradient backgrounds */
+  .gradient-sunset {
+    background: linear-gradient(135deg, hsl(20, 80%, 95%) 0%, hsl(45, 90%, 90%) 50%, hsl(30, 85%, 92%) 100%);
+  }
+
+  .gradient-ocean {
+    background: linear-gradient(135deg, hsl(200, 70%, 95%) 0%, hsl(220, 60%, 92%) 50%, hsl(180, 50%, 94%) 100%);
+  }
+
+  .gradient-forest {
+    background: linear-gradient(135deg, hsl(150, 50%, 95%) 0%, hsl(120, 40%, 92%) 50%, hsl(160, 45%, 94%) 100%);
+  }
+
+  .gradient-royal {
+    background: linear-gradient(135deg, hsl(270, 50%, 95%) 0%, hsl(290, 40%, 92%) 50%, hsl(250, 45%, 94%) 100%);
+  }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, hsl(45, 60%, 95%) 0%, hsl(35, 70%, 90%) 50%, hsl(50, 50%, 94%) 100%);
+  }
+
+  .gradient-rose {
+    background: linear-gradient(135deg, hsl(350, 60%, 96%) 0%, hsl(330, 50%, 94%) 50%, hsl(0, 45%, 95%) 100%);
+  }
+
+  /* Dark mode gradients */
+  .dark .gradient-sunset {
+    background: linear-gradient(135deg, hsl(20, 40%, 10%) 0%, hsl(45, 50%, 12%) 50%, hsl(30, 45%, 11%) 100%);
+  }
+
+  .dark .gradient-ocean {
+    background: linear-gradient(135deg, hsl(200, 50%, 10%) 0%, hsl(220, 40%, 12%) 50%, hsl(180, 35%, 11%) 100%);
+  }
+
+  .dark .gradient-forest {
+    background: linear-gradient(135deg, hsl(150, 35%, 10%) 0%, hsl(120, 30%, 12%) 50%, hsl(160, 35%, 11%) 100%);
+  }
+
+  .dark .gradient-royal {
+    background: linear-gradient(135deg, hsl(270, 35%, 12%) 0%, hsl(290, 30%, 10%) 50%, hsl(250, 35%, 11%) 100%);
+  }
+
+  .dark .gradient-gold {
+    background: linear-gradient(135deg, hsl(45, 40%, 10%) 0%, hsl(35, 50%, 12%) 50%, hsl(50, 35%, 11%) 100%);
+  }
+
+  .dark .gradient-rose {
+    background: linear-gradient(135deg, hsl(350, 40%, 10%) 0%, hsl(330, 35%, 12%) 50%, hsl(0, 30%, 11%) 100%);
+  }
+}
