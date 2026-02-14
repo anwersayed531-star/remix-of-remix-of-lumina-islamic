@@ -1,4 +1,4 @@
-import { Volume2, Play, Pause, SkipBack, SkipForward, User, Loader2 } from 'lucide-react';
+import { Volume2, Play, Pause, SkipBack, SkipForward, Loader2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect, useRef } from 'react';
@@ -17,25 +17,60 @@ const SoundPage = () => {
   const [duration, setDuration] = useState(0);
   const [ayahs, setAyahs] = useState<Ayah[]>([]);
   const [currentAyahIndex, setCurrentAyahIndex] = useState(0);
+  const [totalElapsed, setTotalElapsed] = useState(0);
+  const [totalDuration, setTotalDuration] = useState(0);
+  const [ayahDurations, setAyahDurations] = useState<number[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const preloadRef = useRef<HTMLAudioElement | null>(null);
+  const ayahDurationsRef = useRef<number[]>([]);
   const { t } = useLanguage();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!audioRef.current) audioRef.current = new Audio();
+    if (!preloadRef.current) {
+      preloadRef.current = new Audio();
+      preloadRef.current.preload = 'auto';
+    }
     const audio = audioRef.current;
-    const onTime = () => setCurrentTime(audio.currentTime);
-    const onDur = () => setDuration(audio.duration);
-    const onEnd = () => {
-      if (currentAyahIndex < ayahs.length - 1) {
-        const next = currentAyahIndex + 1;
-        setCurrentAyahIndex(next);
-        audio.src = ayahs[next].audio;
-        audio.play();
-      } else {
-        setIsPlaying(false);
-      }
+
+    const onTime = () => {
+      setCurrentTime(audio.currentTime);
+      const idx = audio.dataset.ayahIndex ? parseInt(audio.dataset.ayahIndex) : 0;
+      const elapsed = ayahDurationsRef.current.slice(0, idx).reduce((a, b) => a + b, 0);
+      setTotalElapsed(elapsed + audio.currentTime);
     };
+
+    const onDur = () => {
+      setDuration(audio.duration);
+      const idx = audio.dataset.ayahIndex ? parseInt(audio.dataset.ayahIndex) : 0;
+      ayahDurationsRef.current[idx] = audio.duration;
+      setAyahDurations([...ayahDurationsRef.current]);
+      setTotalDuration(ayahDurationsRef.current.reduce((a, b) => a + b, 0));
+    };
+
+    const onEnd = () => {
+      setCurrentAyahIndex(prev => {
+        const next = prev + 1;
+        setAyahs(currentAyahs => {
+          if (next < currentAyahs.length) {
+            audio.src = currentAyahs[next].audio;
+            audio.dataset.ayahIndex = String(next);
+            audio.play();
+            // Preload next+1
+            if (next + 1 < currentAyahs.length && preloadRef.current) {
+              preloadRef.current.src = currentAyahs[next + 1].audio;
+              preloadRef.current.load();
+            }
+          } else {
+            setIsPlaying(false);
+          }
+          return currentAyahs;
+        });
+        return next;
+      });
+    };
+
     audio.addEventListener('timeupdate', onTime);
     audio.addEventListener('durationchange', onDur);
     audio.addEventListener('ended', onEnd);
@@ -44,7 +79,7 @@ const SoundPage = () => {
       audio.removeEventListener('durationchange', onDur);
       audio.removeEventListener('ended', onEnd);
     };
-  }, [currentAyahIndex, ayahs]);
+  }, []);
 
   useEffect(() => {
     return () => { audioRef.current?.pause(); };
@@ -56,8 +91,17 @@ const SoundPage = () => {
       const data = await fetchSurahAudio(parseInt(selectedSurah), POPULAR_RECITERS[selectedReciter].identifier);
       setAyahs(data.ayahs);
       setCurrentAyahIndex(0);
+      setTotalElapsed(0);
+      setTotalDuration(0);
+      ayahDurationsRef.current = new Array(data.ayahs.length).fill(0);
       const audio = audioRef.current!;
       audio.src = data.ayahs[0].audio;
+      audio.dataset.ayahIndex = '0';
+      // Preload second ayah
+      if (data.ayahs.length > 1 && preloadRef.current) {
+        preloadRef.current.src = data.ayahs[1].audio;
+        preloadRef.current.load();
+      }
       await audio.play();
       setIsPlaying(true);
     } catch (e) {
@@ -90,8 +134,11 @@ const SoundPage = () => {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const progress = totalDuration > 0 
+    ? (totalElapsed / totalDuration) * 100 
+    : (ayahs.length > 0 ? (currentAyahIndex / ayahs.length) * 100 : 0);
   const currentSurahInfo = SURAHS.find(s => s.number === parseInt(selectedSurah));
+  const currentReciterInfo = POPULAR_RECITERS[selectedReciter];
 
   return (
     <div className="container mx-auto px-4 py-6 space-y-6 animate-fade-in">
@@ -99,11 +146,14 @@ const SoundPage = () => {
       <Card className="border-0 shadow-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
         <CardContent className="p-6">
           <div className="text-center mb-4">
-            <div className="w-20 h-20 mx-auto mb-3 bg-primary-foreground/20 rounded-full flex items-center justify-center">
-              <Volume2 className="w-10 h-10" />
+            <div
+              className="w-20 h-20 mx-auto mb-3 rounded-full flex items-center justify-center text-white font-cairo font-bold text-2xl"
+              style={{ backgroundColor: currentReciterInfo.color }}
+            >
+              {currentReciterInfo.initials}
             </div>
             <h3 className="font-amiri text-xl font-bold">
-              {POPULAR_RECITERS[selectedReciter].nameAr}
+              {currentReciterInfo.nameAr}
             </h3>
             <p className="text-primary-foreground/80 font-cairo text-sm mt-1">
               {currentSurahInfo?.nameAr || t.sound.recitations}
@@ -125,11 +175,11 @@ const SoundPage = () => {
                 if (audioRef.current) audioRef.current.currentTime = pct * duration;
               }}
             >
-              <div className="h-full bg-primary-foreground rounded-full transition-all" style={{ width: `${progress}%` }} />
+              <div className="h-full bg-primary-foreground rounded-full transition-all" style={{ width: `${Math.min(progress, 100)}%` }} />
             </div>
             <div className="flex justify-between mt-1">
-              <span className="text-xs text-primary-foreground/60 font-cairo">{formatTime(currentTime)}</span>
-              <span className="text-xs text-primary-foreground/60 font-cairo">{formatTime(duration)}</span>
+              <span className="text-xs text-primary-foreground/60 font-cairo">{formatTime(totalElapsed)}</span>
+              <span className="text-xs text-primary-foreground/60 font-cairo">{totalDuration > 0 ? formatTime(totalDuration) : '--:--'}</span>
             </div>
           </div>
 
@@ -188,10 +238,11 @@ const SoundPage = () => {
             }}
           >
             <CardContent className="p-4 flex items-center gap-4">
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                selectedReciter === index ? 'bg-primary-foreground/20' : 'bg-islamic-light'
-              }`}>
-                <User className={`w-6 h-6 ${selectedReciter === index ? 'text-primary-foreground' : 'text-primary'}`} />
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center text-white font-cairo font-bold text-sm"
+                style={{ backgroundColor: reciter.color }}
+              >
+                {reciter.initials}
               </div>
               <div className="flex-1">
                 <h4 className="font-cairo font-semibold">{reciter.nameAr}</h4>

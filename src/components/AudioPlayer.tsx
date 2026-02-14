@@ -1,13 +1,17 @@
 import { Play, Pause, SkipBack, SkipForward, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { POPULAR_RECITERS } from '@/lib/quranAudioService';
 
 interface AudioPlayerProps {
   isPlaying: boolean;
   isLoading: boolean;
   currentSurahName: string;
   currentReciterName: string;
+  currentReciter: string;
   currentTime: number;
   duration: number;
+  totalElapsed: number;
+  totalDuration: number;
   currentAyahIndex: number;
   totalAyahs: number;
   onTogglePlayPause: () => void;
@@ -18,8 +22,8 @@ interface AudioPlayerProps {
 }
 
 const AudioPlayer = ({
-  isPlaying, isLoading, currentSurahName, currentReciterName,
-  currentTime, duration, currentAyahIndex, totalAyahs,
+  isPlaying, isLoading, currentSurahName, currentReciterName, currentReciter,
+  totalElapsed, totalDuration, currentAyahIndex, totalAyahs,
   onTogglePlayPause, onNext, onPrev, onSeek, onClose,
 }: AudioPlayerProps) => {
   const formatTime = (t: number) => {
@@ -29,23 +33,29 @@ const AudioPlayer = ({
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const progress = totalDuration > 0 ? (totalElapsed / totalDuration) * 100 : 
+    (totalAyahs > 0 ? ((currentAyahIndex) / totalAyahs) * 100 : 0);
+
+  const reciterInfo = POPULAR_RECITERS.find(r => r.identifier === currentReciter);
 
   return (
     <div className="fixed bottom-20 left-2 right-2 z-50 bg-card/95 backdrop-blur-lg border border-border rounded-2xl shadow-2xl p-3">
       {/* Progress bar */}
-      <div
-        className="w-full h-1 bg-muted rounded-full mb-3 cursor-pointer"
-        onClick={(e) => {
-          const rect = e.currentTarget.getBoundingClientRect();
-          const pct = (e.clientX - rect.left) / rect.width;
-          onSeek(pct * duration);
-        }}
-      >
-        <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${progress}%` }} />
+      <div className="w-full h-1 bg-muted rounded-full mb-3">
+        <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${Math.min(progress, 100)}%` }} />
       </div>
 
       <div className="flex items-center gap-3">
+        {/* Reciter avatar */}
+        {reciterInfo && (
+          <div
+            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white font-cairo font-bold text-sm"
+            style={{ backgroundColor: reciterInfo.color }}
+          >
+            {reciterInfo.initials}
+          </div>
+        )}
+
         {/* Info */}
         <div className="flex-1 min-w-0">
           <p className="font-amiri text-sm font-bold text-foreground truncate">{currentSurahName}</p>
@@ -56,7 +66,7 @@ const AudioPlayer = ({
 
         {/* Time */}
         <span className="text-xs text-muted-foreground font-cairo hidden sm:block">
-          {formatTime(currentTime)} / {formatTime(duration)}
+          {formatTime(totalElapsed)}
         </span>
 
         {/* Controls */}
