@@ -1,6 +1,7 @@
 import { Play, Pause, SkipBack, SkipForward, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { POPULAR_RECITERS } from '@/lib/quranAudioService';
+import logoImg from '@/assets/logo.png';
 
 interface AudioPlayerProps {
   isPlaying: boolean;
@@ -49,10 +50,10 @@ const AudioPlayer = ({
         {/* Reciter avatar */}
         {reciterInfo && (
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white font-cairo font-bold text-sm"
+            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden"
             style={{ backgroundColor: reciterInfo.color }}
           >
-            {reciterInfo.initials}
+            <img src={logoImg} alt={reciterInfo.nameAr} className="w-full h-full object-cover" />
           </div>
         )}
 

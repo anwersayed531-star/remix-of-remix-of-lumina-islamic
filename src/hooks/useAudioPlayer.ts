@@ -144,6 +144,32 @@ export function useAudioPlayer() {
         totalDuration: 0,
         ayahDurations: [],
       }));
+
+      // Media Session API for mobile notifications
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: surahName,
+          artist: reciterInfo?.nameAr || reciter,
+          album: 'القرآن الكريم',
+          artwork: [
+            { src: '/logo.png', sizes: '512x512', type: 'image/png' },
+          ],
+        });
+        navigator.mediaSession.setActionHandler('play', () => {
+          audio.play();
+          setState(s => ({ ...s, isPlaying: true }));
+        });
+        navigator.mediaSession.setActionHandler('pause', () => {
+          audio.pause();
+          setState(s => ({ ...s, isPlaying: false }));
+        });
+        navigator.mediaSession.setActionHandler('nexttrack', () => {
+          // Will be handled by component
+        });
+        navigator.mediaSession.setActionHandler('previoustrack', () => {
+          // Will be handled by component
+        });
+      }
     } catch (error) {
       console.error('Error playing surah:', error);
       setState(s => ({ ...s, isLoading: false }));

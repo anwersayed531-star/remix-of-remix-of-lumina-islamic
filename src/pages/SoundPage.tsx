@@ -1,4 +1,5 @@
 import { Volume2, Play, Pause, SkipBack, SkipForward, Loader2 } from 'lucide-react';
+import logoImg from '@/assets/logo.png';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect, useRef } from 'react';
@@ -85,6 +86,31 @@ const SoundPage = () => {
     return () => { audioRef.current?.pause(); };
   }, []);
 
+  // Auto-restart when surah or reciter changes while playing
+  const isPlayingRef = useRef(false);
+  const prevSurahRef = useRef(selectedSurah);
+  const prevReciterRef = useRef(selectedReciter);
+  
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  useEffect(() => {
+    const surahChanged = prevSurahRef.current !== selectedSurah;
+    const reciterChanged = prevReciterRef.current !== selectedReciter;
+    prevSurahRef.current = selectedSurah;
+    prevReciterRef.current = selectedReciter;
+    
+    if ((surahChanged || reciterChanged) && isPlayingRef.current) {
+      // Auto-restart with new selection
+      playSurahFn();
+    }
+  }, [selectedSurah, selectedReciter]);
+
+  const playSurahFn = async () => {
+    playSurah();
+  };
+
   const playSurah = async () => {
     setIsLoading(true);
     try {
@@ -147,10 +173,10 @@ const SoundPage = () => {
         <CardContent className="p-6">
           <div className="text-center mb-4">
             <div
-              className="w-20 h-20 mx-auto mb-3 rounded-full flex items-center justify-center text-white font-cairo font-bold text-2xl"
+              className="w-20 h-20 mx-auto mb-3 rounded-full flex items-center justify-center overflow-hidden"
               style={{ backgroundColor: currentReciterInfo.color }}
             >
-              {currentReciterInfo.initials}
+              <img src={logoImg} alt="القارئ" className="w-full h-full object-cover" />
             </div>
             <h3 className="font-amiri text-xl font-bold">
               {currentReciterInfo.nameAr}
@@ -230,19 +256,14 @@ const SoundPage = () => {
             }`}
             onClick={() => {
               setSelectedReciter(index);
-              if (isPlaying) {
-                audioRef.current?.pause();
-                setIsPlaying(false);
-                setAyahs([]);
-              }
             }}
           >
             <CardContent className="p-4 flex items-center gap-4">
               <div
-                className="w-12 h-12 rounded-full flex items-center justify-center text-white font-cairo font-bold text-sm"
+                className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
                 style={{ backgroundColor: reciter.color }}
               >
-                {reciter.initials}
+                <img src={logoImg} alt={reciter.nameAr} className="w-full h-full object-cover" />
               </div>
               <div className="flex-1">
                 <h4 className="font-cairo font-semibold">{reciter.nameAr}</h4>
