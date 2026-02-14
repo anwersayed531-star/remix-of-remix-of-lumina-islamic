@@ -1,81 +1,52 @@
 
-# خطة ترجمة المناسبات الإسلامية وصفحاتها
 
-## المشكلة الحالية
+# خطة إنشاء ملفات الترجمة للـ 18 لغة المفقودة
 
-بيانات المناسبات الإسلامية (عاشوراء، الأيام البيض، عيد الفطر، عيد الأضحى، إلخ) مكتوبة بالعربية فقط في ملف `islamicEvents.ts` ولا تتغير عند تبديل اللغة. يشمل ذلك:
-- أسماء المناسبات (مثل "يوم عاشوراء")
-- الوصف المختصر والكامل
-- الأعمال المستحبة
-- تصنيفات الأحداث (عيد، صيام، عبادة، مناسبة)
+## المشكلة
+18 لغة موجودة في قائمة اختيار اللغات (`languages.ts`) لكن ليس لها ملفات ترجمة ولا مسجلة في `index.ts`. عند اختيار أي منها يظهر التطبيق بالعربية بالكامل.
 
-## الحل المقترح
+## اللغات المفقودة
+| الكود | اللغة | المنطقة |
+|-------|--------|---------|
+| de | German (Deutsch) | أوروبا |
+| es | Spanish (Español) | أوروبا |
+| it | Italian (Italiano) | أوروبا |
+| nl | Dutch (Nederlands) | أوروبا |
+| el | Greek (Ελληνικά) | أوروبا |
+| bg | Bulgarian (Български) | أوروبا |
+| ro | Romanian (Română) | أوروبا |
+| uk | Ukrainian (Українська) | أوروبا |
+| hu | Hungarian (Magyar) | أوروبا |
+| pt | Portuguese (Português) | أوروبا |
+| sv | Swedish (Svenska) | أوروبا |
+| no | Norwegian (Norsk) | أوروبا |
+| da | Danish (Dansk) | أوروبا |
+| fi | Finnish (Suomi) | أوروبا |
+| pl | Polish (Polski) | أوروبا |
+| zh | Chinese (中文) | شرق آسيا |
+| ko | Korean (한국어) | شرق آسيا |
+| ja | Japanese (日本語) | شرق آسيا |
 
-### 1. اضافة مفاتيح ترجمة للمناسبات الإسلامية
+## الحل
 
-اضافة قسم `events` داخل `islamicEvent` في ملف الترجمة الأساسي `ar.ts` يحتوي على ترجمة كل مناسبة:
+### 1. إنشاء 18 ملف ترجمة جديد
+إنشاء ملف لكل لغة في `src/lib/translations/` يحتوي على جميع الأقسام:
+- `app`, `nav`, `home`, `counters`, `settings`, `colors`, `fontSizes`, `colorBlind`, `common`
+- `calendar`, `quran`, `hadith`, `sound`, `rulings`
+- `dhikr`, `tasbeeh`, `preparations`, `prayerDetail`
+- `islamicEvent` (بما فيه قسم `events` الجديد)
 
-```text
-islamicEvent: {
-  // المفاتيح الموجودة حاليا...
-  typeHoliday: 'عيد',
-  typeFasting: 'صيام',
-  typeSpecial: 'مناسبة',
-  typeWorship: 'عبادة',
-  events: {
-    newYear: { name, description, fullDescription, practices[] },
-    ashura: { name, description, fullDescription, practices[] },
-    mawlid: { ... },
-    israMiraj: { ... },
-    nisfShaban: { ... },
-    ramadanStart: { ... },
-    lastTen: { ... },
-    eidFitr: { ... },
-    arafah: { ... },
-    eidAdha: { ... },
-  }
-}
-```
+### 2. تسجيل الملفات في `index.ts`
+إضافة 18 سطر import وتسجيلها في كائن `rawTranslations`.
 
-### 2. تعديل ملف `islamicEvents.ts`
+### ترتيب التنفيذ
+سيتم العمل على دفعات لتجنب الانقطاع:
+1. **الدفعة الأولى (6 لغات):** de, es, it, pt, nl, pl
+2. **الدفعة الثانية (6 لغات):** sv, no, da, fi, hu, ro
+3. **الدفعة الثالثة (6 لغات):** bg, uk, el, zh, ko, ja
+4. **تحديث `index.ts`:** تسجيل جميع الـ 18 لغة
 
-- اضافة دالة `getTranslatedEvents(t)` تأخذ كائن الترجمة وترجع قائمة المناسبات مترجمة
-- الحفاظ على البيانات الثابتة (التاريخ، النوع، آيات القرآن) في الملف الأصلي
-- استبدال النصوص العربية الثابتة بالنصوص من كائن الترجمة
-- تعديل دالة `getEventTypeLabel` لتستخدم الترجمة
+### الملفات المتأثرة
+- 18 ملف جديد: `de.ts`, `es.ts`, `it.ts`, `nl.ts`, `el.ts`, `bg.ts`, `ro.ts`, `uk.ts`, `hu.ts`, `pt.ts`, `sv.ts`, `no.ts`, `da.ts`, `fi.ts`, `pl.ts`, `zh.ts`, `ko.ts`, `ja.ts`
+- ملف واحد يُعدّل: `src/lib/translations/index.ts`
 
-### 3. تعديل الصفحات المستخدمة
-
-- `IslamicEventPage.tsx` - استخدام المناسبات المترجمة بدل الثابتة
-- `HijriCalendarPage.tsx` - عرض أسماء المناسبات مترجمة في قائمة الأحداث القادمة
-
-### 4. اضافة الترجمات لجميع اللغات (56 لغة)
-
-اضافة ترجمة المناسبات العشرة لكل لغة موجودة. كل مناسبة تحتاج:
-- الاسم (كلمتين-ثلاث)
-- وصف مختصر (جملة)
-- وصف كامل (فقرة)
-- قائمة الأعمال المستحبة (3-5 عناصر)
-
----
-
-## التفاصيل التقنية
-
-### الملفات المتأثرة:
-1. **`src/lib/translations/ar.ts`** - اضافة مفاتيح المناسبات + تحديث النوع `TranslationKeys`
-2. **`src/lib/islamicEvents.ts`** - اضافة دالة `getTranslatedEvents(t)` والتعديل على `getEventTypeLabel`
-3. **`src/pages/IslamicEventPage.tsx`** - استخدام `getTranslatedEvents(t)` بدل `islamicEvents` المباشر
-4. **`src/pages/HijriCalendarPage.tsx`** - نفس التعديل للأحداث القادمة وتقويم الأيام
-5. **`src/components/HijriCalendarWidget.tsx`** - لو يستخدم المناسبات
-6. **56 ملف ترجمة** - اضافة قسم `events` لكل لغة
-
-### ترتيب التنفيذ:
-1. تعديل `ar.ts` (اضافة المفاتيح الجديدة)
-2. تعديل `islamicEvents.ts` (الدالة الجديدة)
-3. تعديل الصفحات (`IslamicEventPage`, `HijriCalendarPage`)
-4. اضافة الترجمات على دفعات (كما فعلنا سابقا)
-
-### ملاحظة مهمة:
-- آيات القرآن تبقى بالعربية دائما (لا تترجم)
-- الأدعية والأذكار تبقى بالعربية (لا تترجم)
-- فقط الأسماء والأوصاف والأعمال المستحبة تترجم
