@@ -45,6 +45,24 @@ import { tt } from './tt';
 import { ff } from './ff';
 import { wo } from './wo';
 import { om } from './om';
+import { de } from './de';
+import { es } from './es';
+import { it } from './it';
+import { pt } from './pt';
+import { nl } from './nl';
+import { pl } from './pl';
+import { sv } from './sv';
+import { no } from './no';
+import { da } from './da';
+import { fi } from './fi';
+import { hu } from './hu';
+import { ro } from './ro';
+import { bg } from './bg';
+import { uk } from './uk';
+import { el } from './el';
+import { zh } from './zh';
+import { ko } from './ko';
+import { ja } from './ja';
 
 // Deep merge function - merges partial translation with Arabic defaults
 function deepMerge(target: any, source: any): any {
@@ -68,6 +86,8 @@ const rawTranslations: Record<string, any> = {
   jv, su, az, uz, kk, ky, tg, ug, ha, so,
   yo, am, sq, bs, ru,
   ne, tl, th, km, vi, my, tk, tt, ff, wo, om,
+  de, es, it, pt, nl, pl, sv, no, da, fi, hu, ro,
+  bg, uk, el, zh, ko, ja,
 };
 
 // Merged translations cache
