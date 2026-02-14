@@ -19,6 +19,7 @@ import HijriCalendarPage from "./pages/HijriCalendarPage";
 import IslamicEventPage from "./pages/IslamicEventPage";
 import PrayerDetailPage from "./pages/PrayerDetailPage";
 import SettingsPage from "./pages/SettingsPage";
+import SurahDetailPage from "./pages/SurahDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/hijri-calendar" element={<AppLayout><HijriCalendarPage /></AppLayout>} />
             <Route path="/islamic-event/:eventId" element={<AppLayout><IslamicEventPage /></AppLayout>} />
             <Route path="/prayer/:prayerId" element={<AppLayout><PrayerDetailPage /></AppLayout>} />
+            <Route path="/surah/:surahId" element={<AppLayout><SurahDetailPage /></AppLayout>} />
             <Route path="/settings" element={<AppLayout><SettingsPage /></AppLayout>} />
             <Route path="*" element={<AppLayout><NotFound /></AppLayout>} />
           </Routes>
