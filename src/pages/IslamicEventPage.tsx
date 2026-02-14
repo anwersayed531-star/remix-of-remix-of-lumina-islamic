@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { islamicEvents, getEventTypeLabel, getEventTypeColor } from '@/lib/islamicEvents';
+import { getTranslatedEvents, getEventTypeLabel, getEventTypeColor } from '@/lib/islamicEvents';
 import { Calendar, BookOpen, Star, Heart, ArrowRight, ChevronLeft } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 
@@ -10,7 +10,8 @@ const IslamicEventPage = () => {
   const navigate = useNavigate();
   const { t, direction } = useLanguage();
   
-  const event = islamicEvents.find(e => e.id === eventId);
+  const translatedEvents = getTranslatedEvents(t);
+  const event = translatedEvents.find(e => e.id === eventId);
   
   if (!event) {
     return (
@@ -21,7 +22,7 @@ const IslamicEventPage = () => {
     );
   }
 
-  const typeLabel = getEventTypeLabel(event.type);
+  const typeLabel = getEventTypeLabel(event.type, t);
   const typeColor = getEventTypeColor(event.type);
 
   return (

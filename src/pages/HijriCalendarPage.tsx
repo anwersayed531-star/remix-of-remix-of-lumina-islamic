@@ -19,7 +19,7 @@ const HijriCalendarPage = () => {
   const [viewMode, setViewMode] = useState<'year' | 'month'>('year');
   const { t, language } = useLanguage();
   
-  const upcomingEvents = getUpcomingEvents(currentHijri.day, currentHijri.month);
+  const upcomingEvents = getUpcomingEvents(currentHijri.day, currentHijri.month, t);
 
   const handlePrevYear = () => setSelectedYear(prev => prev - 1);
   const handleNextYear = () => setSelectedYear(prev => prev + 1);
@@ -58,7 +58,7 @@ const HijriCalendarPage = () => {
       const isToday = isCurrentMonth && currentHijri.day === day;
       const isWhiteDay = whiteDays.includes(day);
       const dayHasEvent = hasEvent(day, month);
-      const dayEvents = getEventsForDate(day, month);
+      const dayEvents = getEventsForDate(day, month, t);
       
       days.push(
         <div key={day} onClick={(e) => { if (dayHasEvent && dayEvents.length > 0) { e.stopPropagation(); navigate(`/islamic-event/${dayEvents[0].id}`); } }}
@@ -140,7 +140,7 @@ const HijriCalendarPage = () => {
                       <p className="text-xs text-muted-foreground font-cairo">{event.day} / {hijriMonths[event.month - 1]}</p>
                     </div>
                   </div>
-                  <span className={`text-xs px-2 py-1 rounded-full text-white ${getEventTypeColor(event.type)}`}>{getEventTypeLabel(event.type)}</span>
+                  <span className={`text-xs px-2 py-1 rounded-full text-white ${getEventTypeColor(event.type)}`}>{getEventTypeLabel(event.type, t)}</span>
                 </div>
               ))}
             </div>
