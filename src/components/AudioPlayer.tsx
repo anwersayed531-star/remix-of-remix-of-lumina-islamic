@@ -53,7 +53,12 @@ const AudioPlayer = ({
             className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden"
             style={{ backgroundColor: reciterInfo.color }}
           >
-            <img src={logoImg} alt={reciterInfo.nameAr} className="w-full h-full object-cover" />
+            <img 
+              src={reciterInfo.imageUrl || logoImg} 
+              alt={reciterInfo.nameAr} 
+              className="w-full h-full object-cover" 
+              onError={(e) => { e.currentTarget.src = logoImg; }}
+            />
           </div>
         )}
 
