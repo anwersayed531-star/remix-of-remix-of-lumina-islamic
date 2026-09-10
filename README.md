@@ -1,73 +1,24 @@
-# Welcome to your Lovable project
+# Remix of Remix of Lumina Islamic
 
-## Project info
+Hello, I'd like to create an Islamic app called "Islami." I want it to be available in 100 languages and 100 countries. However, I will start developing it with Arabic as the primary language. I want the app to be modern, elegant, and professional, reflecting seriousness and decorum. I want the background to be white and the text black. I want it to have a contemporary look. It will consist of a home screen containing the logo (the logo image of which I will send you), prayer times, the time remaining for each prayer, and the Hijri calendar. It will also include information about days and months, such as the sacred months: Sha'ban, Ramadan, and others, in the form of a calendar and a bottom bar containing buttons for the main screens, the Quran, Hadith, rulings, sound, and counters. All of these are separate screens. The Quran, Hadith, rulings, and images will have their content added later, but nothing will be written on them. The counters screens will contain the numbers, pebbles, and a button for the tasbih pages. Its dedicated button page will be on the counters screen and will contain a counter button and words like Subhan Allah, Alhamdulillah, Allahu Akbar, and Iman. On the counters screens, you will need a button called "Preparations" that contains the Quran, breastfeeding, 3D, and an interactive continent. You will need maps of all countries to learn about the Quran in Google Earth. When you click on any country, the preparations will appear. I will provide you with these preparations.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+This project was built with [Lovable](https://lovable.dev).
 
-## How can I edit this code?
+## Build with Lovable
 
-There are several ways of editing your application.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/4143c9aa-553e-4acf-8090-2a50270a51fa).
 
-**Use Lovable**
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Development
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
