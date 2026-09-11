@@ -110,8 +110,10 @@ export const ur = {
     jumadaAlUla: 'جمادی الاول', jumadaAlThani: 'جمادی الثانی', rajab: 'رجب', shaban: 'شعبان',
     ramadan: 'رمضان', shawwal: 'شوال', dhuAlQidah: 'ذوالقعدہ', dhuAlHijjah: 'ذوالحجہ', monthNum: 'مہینہ',
   },
-  quran: { title: 'قرآن مجید', searchPlaceholder: 'سورت یا آیت تلاش کریں...', bookmarks: 'نشانیاں', lastRead: 'آخری پڑھائی', comingSoon: 'جلد آ رہا ہے', contentComingSoon: 'قرآن مجید کا مواد یہاں شامل کیا جائے گا', collections: 'کتب', selectCollection: 'ایک کتاب منتخب کریں', sections: 'ابواب', selectSection: 'ایک باب منتخب کریں', hadithNumber: 'حدیث نمبر', arabicText: 'عربی متن', translation: 'ترجمہ', loadingHadiths: 'احادیث لوڈ ہو رہی ہیں...', errorLoading: 'لوڈ کرتے وقت خرابی', noHadiths: 'اس باب میں کوئی احادیث نہیں', totalHadiths: 'کل احادیث', allCollections: 'تمام کتب', backToCollections: 'کتب پر واپس', backToSections: 'ابواب پر واپس' },
-  hadith: { title: 'حدیث', searchPlaceholder: 'حدیث تلاش کریں...', sahihBukhari: 'صحیح بخاری', sahihMuslim: 'صحیح مسلم', comingSoon: 'جلد آ رہا ہے', contentComingSoon: 'رسول اللہ ﷺ کی احادیث یہاں شامل کی جائیں گی' },
+  quran: { title: 'قرآن مجید', searchPlaceholder: 'سورت یا آیت تلاش کریں...', bookmarks: 'نشانیاں', lastRead: 'آخری پڑھائی', comingSoon: 'جلد آ رہا ہے', contentComingSoon: 'قرآن مجید کا مواد یہاں شامل کیا جائے گا' },
+  hadith: { title: 'حدیث', searchPlaceholder: 'حدیث تلاش کریں...', sahihBukhari: 'صحیح بخاری', sahihMuslim: 'صحیح مسلم', comingSoon: 'جلد آ رہا ہے', contentComingSoon: 'رسول اللہ ﷺ کی احادیث یہاں شامل کی جائیں گی',
+    collections: 'کتب', selectCollection: 'ایک کتاب منتخب کریں', sections: 'ابواب', selectSection: 'ایک باب منتخب کریں', hadithNumber: 'حدیث نمبر', arabicText: 'عربی متن', translation: 'ترجمہ', loadingHadiths: 'احادیث لوڈ ہو رہی ہیں...', errorLoading: 'لوڈ کرتے وقت خرابی', noHadiths: 'اس باب میں کوئی احادیث نہیں', totalHadiths: 'کل احادیث', allCollections: 'تمام کتب', backToCollections: 'کتب پر واپس', backToSections: 'ابواب پر واپس',
+  },
   sound: { title: 'تلاوات', selectReciter: 'قاری منتخب کریں', reciters: 'قراء', recitations: 'قرآنی تلاوات', murattal: 'مرتل', mujawwad: 'مجود' },
   rulings: { title: 'احکام', searchPlaceholder: 'حکم تلاش کریں...', prayerRulings: 'نماز کے احکام', fastingRulings: 'روزے کے احکام', zakatRulings: 'زکوٰۃ کے احکام', hajjRulings: 'حج کے احکام', breastfeedingRulings: 'رضاعت کے احکام', purificationRulings: 'طہارت کے احکام', comingSoon: 'جلد آ رہا ہے' },
   dhikr: {

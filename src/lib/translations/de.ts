@@ -144,6 +144,7 @@ export const de: TranslationKeys = {
     sahihMuslim: 'Sahih Muslim',
     comingSoon: 'Kommt bald',
     contentComingSoon: 'Hadithe des Propheten ﷺ werden hier hinzugefügt',
+    collections: 'Sammlungen', selectCollection: 'Sammlung wählen', sections: 'Kapitel', selectSection: 'Kapitel wählen', hadithNumber: 'Hadith Nr.', arabicText: 'Arabischer Text', translation: 'Übersetzung', loadingHadiths: 'Hadithe werden geladen...', errorLoading: 'Fehler beim Laden', noHadiths: 'Keine Hadithe in diesem Kapitel', totalHadiths: 'Gesamt Hadithe', allCollections: 'Alle Sammlungen', backToCollections: 'Zurück zu Sammlungen', backToSections: 'Zurück zu Kapiteln',
   },
   sound: {
     title: 'Rezitationen',
