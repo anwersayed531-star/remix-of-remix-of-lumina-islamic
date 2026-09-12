@@ -67,29 +67,39 @@ const HadithPage = () => {
 
   const handleSelectBook = (bookId: string) => {
     setSelectedBook(bookId);
+    setUseEnglish(false);
     setView('sections');
     loadSections(bookId);
   };
 
   // ---- Hadiths view ----
-  const loadHadiths = useCallback(async (bookId: string, sectionNo: number) => {
+  const loadHadiths = useCallback(async (bookId: string, sectionNo: number, translationLang: string | null) => {
     setLoadingHadiths(true);
     setHadithsError(null);
     try {
-      const data = await fetchSectionHadiths(bookId, sectionNo, language);
+      const data = await fetchSectionHadiths(bookId, sectionNo, translationLang);
       setHadiths(data);
     } catch (err) {
       setHadithsError(t.hadith.errorLoading);
     } finally {
       setLoadingHadiths(false);
     }
-  }, [language, t]);
+  }, [t]);
 
   const handleSelectSection = (sectionNo: number) => {
     setSelectedSection(sectionNo);
     setView('hadiths');
-    if (selectedBook) loadHadiths(selectedBook, sectionNo);
+    if (selectedBook) loadHadiths(selectedBook, sectionNo, activeTranslationLang);
   };
+
+  // reload when the user opts into the English certified translation
+  useEffect(() => {
+    if (view === 'hadiths' && selectedBook && selectedSection !== null) {
+      loadHadiths(selectedBook, selectedSection, activeTranslationLang);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTranslationLang, language]);
+
 
   // ---- Navigation helpers ----
   const backToCollections = () => {
