@@ -280,7 +280,7 @@ const HadithPage = () => {
               variant="outline"
               size="sm"
               className="mt-4 font-cairo"
-              onClick={() => selectedBook && selectedSection !== null && loadHadiths(selectedBook, selectedSection)}
+              onClick={() => selectedBook && selectedSection !== null && loadHadiths(selectedBook, selectedSection, activeTranslationLang)}
             >
               {t.hadith.errorLoading}
             </Button>
