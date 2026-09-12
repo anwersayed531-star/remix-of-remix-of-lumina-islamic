@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Search, ChevronRight, ArrowRight, BookOpen, Loader2, AlertCircle, MessageSquareText } from 'lucide-react';
+import { Search, ChevronRight, ArrowRight, BookOpen, Loader2, AlertCircle, MessageSquareText, Languages } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -7,7 +7,8 @@ import {
   HADITH_BOOKS,
   fetchBookInfo,
   fetchSectionHadiths,
-  hasTranslation,
+  getAvailableTranslation,
+  API_LANG_LABELS,
   type HadithSection,
   type HadithWithTranslation,
 } from '@/lib/hadithService';
@@ -31,7 +32,17 @@ const HadithPage = () => {
   const [loadingHadiths, setLoadingHadiths] = useState(false);
   const [hadithsError, setHadithsError] = useState<string | null>(null);
 
-  const showTranslation = language !== 'ar';
+  // user opt-in to the certified English translation when their language has none
+  const [useEnglish, setUseEnglish] = useState(false);
+
+  const availability = selectedBook ? getAvailableTranslation(selectedBook, language) : null;
+  const activeTranslationLang = availability?.available
+    ? availability.apiLang
+    : useEnglish && availability?.englishAvailable
+      ? 'eng'
+      : null;
+  const activeTranslationLabel = activeTranslationLang ? API_LANG_LABELS[activeTranslationLang] : null;
+
 
   // ---- Collections view ----
   const filteredBooks = HADITH_BOOKS.filter(book => {
@@ -56,29 +67,39 @@ const HadithPage = () => {
 
   const handleSelectBook = (bookId: string) => {
     setSelectedBook(bookId);
+    setUseEnglish(false);
     setView('sections');
     loadSections(bookId);
   };
 
   // ---- Hadiths view ----
-  const loadHadiths = useCallback(async (bookId: string, sectionNo: number) => {
+  const loadHadiths = useCallback(async (bookId: string, sectionNo: number, translationLang: string | null) => {
     setLoadingHadiths(true);
     setHadithsError(null);
     try {
-      const data = await fetchSectionHadiths(bookId, sectionNo, language);
+      const data = await fetchSectionHadiths(bookId, sectionNo, translationLang);
       setHadiths(data);
     } catch (err) {
       setHadithsError(t.hadith.errorLoading);
     } finally {
       setLoadingHadiths(false);
     }
-  }, [language, t]);
+  }, [t]);
 
   const handleSelectSection = (sectionNo: number) => {
     setSelectedSection(sectionNo);
     setView('hadiths');
-    if (selectedBook) loadHadiths(selectedBook, sectionNo);
+    if (selectedBook) loadHadiths(selectedBook, sectionNo, activeTranslationLang);
   };
+
+  // reload when the user opts into the English certified translation
+  useEffect(() => {
+    if (view === 'hadiths' && selectedBook && selectedSection !== null) {
+      loadHadiths(selectedBook, selectedSection, activeTranslationLang);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTranslationLang, language]);
+
 
   // ---- Navigation helpers ----
   const backToCollections = () => {
@@ -243,6 +264,28 @@ const HadithPage = () => {
         </p>
       </div>
 
+      {/* No certified translation in the user's language */}
+      {language !== 'ar' && availability && !availability.available && (
+        <Card className="border-0 shadow-sm bg-muted/40">
+          <CardContent className="p-4 space-y-3">
+            <div className="flex items-start gap-2">
+              <Languages className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="text-sm font-cairo text-foreground">{t.hadith.noCertifiedTranslation}</p>
+                <p className="text-xs font-cairo text-muted-foreground">{t.hadith.arabicIsSource}</p>
+              </div>
+            </div>
+            {availability.englishAvailable && !useEnglish && (
+              <Button variant="outline" size="sm" className="font-cairo w-full" onClick={() => setUseEnglish(true)}>
+                {t.hadith.showEnglishTranslation}
+              </Button>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
+
+
       {loadingHadiths && (
         <div className="flex flex-col items-center justify-center py-12 gap-3">
           <Loader2 className="w-8 h-8 animate-spin text-primary" />
@@ -259,7 +302,7 @@ const HadithPage = () => {
               variant="outline"
               size="sm"
               className="mt-4 font-cairo"
-              onClick={() => selectedBook && selectedSection !== null && loadHadiths(selectedBook, selectedSection)}
+              onClick={() => selectedBook && selectedSection !== null && loadHadiths(selectedBook, selectedSection, activeTranslationLang)}
             >
               {t.hadith.errorLoading}
             </Button>
@@ -296,15 +339,19 @@ const HadithPage = () => {
                   </p>
                 </div>
 
-                {/* Translation (for non-Arabic languages) */}
-                {showTranslation && hadith.translation && (
+                {/* Certified translation, labelled with its own language */}
+                {hadith.translation && (
                   <div className="bg-primary/5 rounded-xl p-4 border border-primary/10">
-                    <p className="text-xs text-primary font-cairo mb-2 font-semibold">{t.hadith.translation}</p>
+                    <p className="text-xs text-primary font-cairo mb-2 font-semibold">
+                      {t.hadith.translation}
+                      {activeTranslationLabel ? ` — ${activeTranslationLabel}` : ''}
+                    </p>
                     <p className="font-cairo text-sm leading-relaxed text-foreground">
                       {hadith.translation}
                     </p>
                   </div>
                 )}
+
 
                 {/* Reference */}
                 {hadith.reference && (
