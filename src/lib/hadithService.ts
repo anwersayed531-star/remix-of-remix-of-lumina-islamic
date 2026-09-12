@@ -174,32 +174,24 @@ async function fetchEditionSection(bookId: string, apiLang: string, sectionNo: n
   return data.hadiths || [];
 }
 
-// Fetch hadiths for a section with Arabic + translation
+// Fetch hadiths for a section: Arabic is always the source.
+// `translationApiLang` must be an explicit certified edition code (e.g. 'eng', 'urd')
+// or null for Arabic only — there is no silent fallback to another language.
 export async function fetchSectionHadiths(
   bookId: string,
   sectionNo: number,
-  appLang: string
+  translationApiLang: string | null
 ): Promise<HadithWithTranslation[]> {
-  const apiLang = getApiLangCode(appLang);
-  const showTranslation = appLang !== 'ar';
-
   // Always fetch Arabic
   const arabicHadiths = await fetchEditionSection(bookId, 'ara', sectionNo);
 
-  // Fetch translation if needed
+  // Fetch the requested certified translation, if any
   let translatedHadiths: HadithText[] = [];
-  if (showTranslation) {
+  if (translationApiLang && translationApiLang !== 'ara') {
     try {
-      translatedHadiths = await fetchEditionSection(bookId, apiLang, sectionNo);
+      translatedHadiths = await fetchEditionSection(bookId, translationApiLang, sectionNo);
     } catch {
-      // If translation fails, try English fallback
-      if (apiLang !== 'eng') {
-        try {
-          translatedHadiths = await fetchEditionSection(bookId, 'eng', sectionNo);
-        } catch {
-          // Continue with Arabic only
-        }
-      }
+      // No certified translation for this section — Arabic only
     }
   }
 
@@ -208,6 +200,7 @@ export async function fetchSectionHadiths(
   for (const h of translatedHadiths) {
     translationMap[h.hadithnumber] = h.text;
   }
+
 
   // Get section name from first hadith metadata
   let sectionName: string | undefined;
