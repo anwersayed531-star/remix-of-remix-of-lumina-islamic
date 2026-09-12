@@ -220,7 +220,7 @@ export async function fetchSectionHadiths(
     hadithnumber: h.hadithnumber,
     arabicnumber: h.arabicnumber,
     arabicText: h.text,
-    translation: showTranslation ? translationMap[h.hadithnumber] : undefined,
+    translation: translationMap[h.hadithnumber],
     grades: h.grades,
     reference: h.reference,
     sectionName,
