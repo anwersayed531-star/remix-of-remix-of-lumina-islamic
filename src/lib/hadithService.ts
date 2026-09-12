@@ -35,15 +35,67 @@ const APP_TO_API_LANG: Record<string, string> = {
   ur: 'urd',
 };
 
-// Get the API language code for a given app language (falls back to 'eng')
-export function getApiLangCode(appLang: string): string {
-  return APP_TO_API_LANG[appLang] || 'eng';
+// Human-readable label for each certified translation language
+export const API_LANG_LABELS: Record<string, string> = {
+  eng: 'English',
+  fra: 'Français',
+  ben: 'বাংলা',
+  ind: 'Bahasa Indonesia',
+  rus: 'Русский',
+  tam: 'தமிழ்',
+  tur: 'Türkçe',
+  urd: 'اردو',
+};
+
+// Certified translations are not uniform across books — availability is per (language, book)
+const TRANSLATION_AVAILABILITY: Record<string, string[]> = {
+  eng: ['abudawud', 'bukhari', 'ibnmajah', 'malik', 'muslim', 'nasai', 'nawawi', 'qudsi', 'tirmidhi'],
+  fra: ['abudawud', 'bukhari', 'ibnmajah', 'malik', 'muslim', 'nasai', 'nawawi', 'qudsi'],
+  tur: ['abudawud', 'bukhari', 'ibnmajah', 'malik', 'muslim', 'nasai', 'nawawi', 'tirmidhi'],
+  ben: ['abudawud', 'bukhari', 'ibnmajah', 'malik', 'muslim', 'nasai', 'nawawi', 'tirmidhi'],
+  urd: ['abudawud', 'bukhari', 'ibnmajah', 'malik', 'muslim', 'nasai', 'tirmidhi'],
+  ind: ['abudawud', 'bukhari', 'ibnmajah', 'malik', 'muslim', 'nasai', 'tirmidhi'],
+  rus: ['abudawud', 'bukhari', 'muslim'],
+  tam: ['bukhari', 'muslim'],
+};
+
+export interface TranslationAvailability {
+  /** A certified translation exists in the user's own language for this book */
+  available: boolean;
+  /** API language code of the user's language, if the API knows it at all */
+  apiLang: string | null;
+  languageLabel: string | null;
+  /** English certified translation exists for this book (opt-in fallback) */
+  englishAvailable: boolean;
 }
 
-// Check if translation is available for this language
-export function hasTranslation(appLang: string): boolean {
-  return appLang !== 'ar' && appLang in APP_TO_API_LANG;
+// Get the API language code for a given app language (null when unsupported)
+export function getApiLangCode(appLang: string): string | null {
+  return APP_TO_API_LANG[appLang] || null;
 }
+
+/** Which certified translation (if any) can be shown for this book in this app language */
+export function getAvailableTranslation(bookId: string, appLang: string): TranslationAvailability {
+  const englishAvailable = TRANSLATION_AVAILABILITY.eng.includes(bookId);
+  if (appLang === 'ar') {
+    return { available: false, apiLang: 'ara', languageLabel: null, englishAvailable: false };
+  }
+  const apiLang = getApiLangCode(appLang);
+  const available = !!apiLang && (TRANSLATION_AVAILABILITY[apiLang]?.includes(bookId) ?? false);
+  return {
+    available,
+    apiLang: available ? apiLang : null,
+    languageLabel: available && apiLang ? API_LANG_LABELS[apiLang] : null,
+    englishAvailable,
+  };
+}
+
+/** True when at least one certified translation exists in the user's language (any book) */
+export function hasTranslation(appLang: string): boolean {
+  const apiLang = getApiLangCode(appLang);
+  return appLang !== 'ar' && !!apiLang && !!TRANSLATION_AVAILABILITY[apiLang];
+}
+
 
 export interface HadithSection {
   number: number;
