@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Search, ChevronRight, ArrowRight, BookOpen, Loader2, AlertCircle, MessageSquareText } from 'lucide-react';
+import { Search, ChevronRight, ArrowRight, BookOpen, Loader2, AlertCircle, MessageSquareText, Languages } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -7,7 +7,8 @@ import {
   HADITH_BOOKS,
   fetchBookInfo,
   fetchSectionHadiths,
-  hasTranslation,
+  getAvailableTranslation,
+  API_LANG_LABELS,
   type HadithSection,
   type HadithWithTranslation,
 } from '@/lib/hadithService';
@@ -31,7 +32,17 @@ const HadithPage = () => {
   const [loadingHadiths, setLoadingHadiths] = useState(false);
   const [hadithsError, setHadithsError] = useState<string | null>(null);
 
-  const showTranslation = language !== 'ar';
+  // user opt-in to the certified English translation when their language has none
+  const [useEnglish, setUseEnglish] = useState(false);
+
+  const availability = selectedBook ? getAvailableTranslation(selectedBook, language) : null;
+  const activeTranslationLang = availability?.available
+    ? availability.apiLang
+    : useEnglish && availability?.englishAvailable
+      ? 'eng'
+      : null;
+  const activeTranslationLabel = activeTranslationLang ? API_LANG_LABELS[activeTranslationLang] : null;
+
 
   // ---- Collections view ----
   const filteredBooks = HADITH_BOOKS.filter(book => {
