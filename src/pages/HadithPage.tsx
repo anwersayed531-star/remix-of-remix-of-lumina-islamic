@@ -317,15 +317,19 @@ const HadithPage = () => {
                   </p>
                 </div>
 
-                {/* Translation (for non-Arabic languages) */}
-                {showTranslation && hadith.translation && (
+                {/* Certified translation, labelled with its own language */}
+                {hadith.translation && (
                   <div className="bg-primary/5 rounded-xl p-4 border border-primary/10">
-                    <p className="text-xs text-primary font-cairo mb-2 font-semibold">{t.hadith.translation}</p>
+                    <p className="text-xs text-primary font-cairo mb-2 font-semibold">
+                      {t.hadith.translation}
+                      {activeTranslationLabel ? ` — ${activeTranslationLabel}` : ''}
+                    </p>
                     <p className="font-cairo text-sm leading-relaxed text-foreground">
                       {hadith.translation}
                     </p>
                   </div>
                 )}
+
 
                 {/* Reference */}
                 {hadith.reference && (
