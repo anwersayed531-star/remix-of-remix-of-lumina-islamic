@@ -1,7 +1,7 @@
 // Bulgarian Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const bg: TranslationKeys = {
+export const bg: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Твоят Ислямски Спътник' },
   nav: { home: 'Начало', quran: 'Коран', hadith: 'Хадис', rulings: 'Правила', sound: 'Аудио', counters: 'Броячи', settings: 'Настройки' },
   home: { prayerTimes: 'Времена за Молитва', nextPrayer: 'Следваща Молитва', hijriCalendar: 'Хиджри Календар', today: 'Днес', fajr: 'Фаджр', sunrise: 'Изгрев', dhuhr: 'Зухр', asr: 'Аср', maghrib: 'Магриб', isha: 'Иша' },

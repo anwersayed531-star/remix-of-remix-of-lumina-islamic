@@ -1,7 +1,7 @@
 // Polish Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const pl: TranslationKeys = {
+export const pl: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Twój Islamski Towarzysz' },
   nav: { home: 'Strona główna', quran: 'Koran', hadith: 'Hadis', rulings: 'Orzeczenia', sound: 'Audio', counters: 'Liczniki', settings: 'Ustawienia' },
   home: { prayerTimes: 'Czasy Modlitw', nextPrayer: 'Następna Modlitwa', hijriCalendar: 'Kalendarz Hidżri', today: 'Dzisiaj', fajr: 'Fadżr', sunrise: 'Wschód Słońca', dhuhr: 'Zuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isza' },

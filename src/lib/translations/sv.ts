@@ -1,7 +1,7 @@
 // Swedish Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const sv: TranslationKeys = {
+export const sv: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Din Islamiska Följeslagare' },
   nav: { home: 'Hem', quran: 'Koranen', hadith: 'Hadith', rulings: 'Regler', sound: 'Ljud', counters: 'Räknare', settings: 'Inställningar' },
   home: { prayerTimes: 'Bönetider', nextPrayer: 'Nästa Bön', hijriCalendar: 'Hijrikalender', today: 'Idag', fajr: 'Fajr', sunrise: 'Soluppgång', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' },

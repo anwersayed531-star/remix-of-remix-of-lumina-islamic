@@ -1,7 +1,7 @@
 // Hungarian Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const hu: TranslationKeys = {
+export const hu: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Iszlám Társad' },
   nav: { home: 'Főoldal', quran: 'Korán', hadith: 'Hadísz', rulings: 'Szabályok', sound: 'Hang', counters: 'Számlálók', settings: 'Beállítások' },
   home: { prayerTimes: 'Imaidők', nextPrayer: 'Következő Ima', hijriCalendar: 'Hidzsri Naptár', today: 'Ma', fajr: 'Fadzsr', sunrise: 'Napkelte', dhuhr: 'Dhuhr', asr: 'Aszr', maghrib: 'Magrib', isha: 'Isá' },

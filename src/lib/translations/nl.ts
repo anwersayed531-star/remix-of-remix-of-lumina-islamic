@@ -1,7 +1,7 @@
 // Dutch Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const nl: TranslationKeys = {
+export const nl: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Jouw Islamitische Metgezel' },
   nav: { home: 'Home', quran: 'Koran', hadith: 'Hadith', rulings: 'Regels', sound: 'Audio', counters: 'Tellers', settings: 'Instellingen' },
   home: { prayerTimes: 'Gebedstijden', nextPrayer: 'Volgend Gebed', hijriCalendar: 'Hijri-kalender', today: 'Vandaag', fajr: 'Fajr', sunrise: 'Zonsopgang', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' },

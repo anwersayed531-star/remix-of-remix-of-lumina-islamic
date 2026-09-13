@@ -1,7 +1,7 @@
 // Greek Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const el: TranslationKeys = {
+export const el: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Ο Ισλαμικός Σύντροφός Σου' },
   nav: { home: 'Αρχική', quran: 'Κοράνι', hadith: 'Χαντίθ', rulings: 'Κανόνες', sound: 'Ήχος', counters: 'Μετρητές', settings: 'Ρυθμίσεις' },
   home: { prayerTimes: 'Ώρες Προσευχής', nextPrayer: 'Επόμενη Προσευχή', hijriCalendar: 'Ημερολόγιο Χίτζρα', today: 'Σήμερα', fajr: 'Φατζρ', sunrise: 'Ανατολή', dhuhr: 'Ζουχρ', asr: 'Ασρ', maghrib: 'Μαγκρίμπ', isha: 'Ισά' },

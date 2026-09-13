@@ -1,7 +1,7 @@
 // Chinese Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const zh: TranslationKeys = {
+export const zh: PartialTranslation = {
   app: { name: 'Islami', tagline: '您的伊斯兰伴侣' },
   nav: { home: '首页', quran: '古兰经', hadith: '圣训', rulings: '教法', sound: '音频', counters: '计数器', settings: '设置' },
   home: { prayerTimes: '礼拜时间', nextPrayer: '下次礼拜', hijriCalendar: '伊历日历', today: '今天', fajr: '晨礼', sunrise: '日出', dhuhr: '晌礼', asr: '晡礼', maghrib: '昏礼', isha: '宵礼' },

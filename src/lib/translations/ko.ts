@@ -1,7 +1,7 @@
 // Korean Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const ko: TranslationKeys = {
+export const ko: PartialTranslation = {
   app: { name: 'Islami', tagline: '당신의 이슬람 동반자' },
   nav: { home: '홈', quran: '꾸란', hadith: '하디스', rulings: '율법', sound: '오디오', counters: '카운터', settings: '설정' },
   home: { prayerTimes: '예배 시간', nextPrayer: '다음 예배', hijriCalendar: '히즈리 달력', today: '오늘', fajr: '파즈르', sunrise: '일출', dhuhr: '두흐르', asr: '아스르', maghrib: '마그립', isha: '이샤' },

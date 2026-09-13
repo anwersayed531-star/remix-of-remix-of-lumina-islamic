@@ -1,7 +1,7 @@
 // Finnish Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const fi: TranslationKeys = {
+export const fi: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Islamilainen Kumppanisi' },
   nav: { home: 'Koti', quran: 'Koraani', hadith: 'Hadith', rulings: 'Säännöt', sound: 'Ääni', counters: 'Laskurit', settings: 'Asetukset' },
   home: { prayerTimes: 'Rukousajat', nextPrayer: 'Seuraava Rukous', hijriCalendar: 'Hijri-kalenteri', today: 'Tänään', fajr: 'Fajr', sunrise: 'Auringonnousu', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' },

@@ -1,7 +1,7 @@
 // Norwegian Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const no: TranslationKeys = {
+export const no: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Din Islamske Følgesvenn' },
   nav: { home: 'Hjem', quran: 'Koranen', hadith: 'Hadith', rulings: 'Regler', sound: 'Lyd', counters: 'Tellere', settings: 'Innstillinger' },
   home: { prayerTimes: 'Bønnetider', nextPrayer: 'Neste Bønn', hijriCalendar: 'Hijrikalender', today: 'I dag', fajr: 'Fajr', sunrise: 'Soloppgang', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' },

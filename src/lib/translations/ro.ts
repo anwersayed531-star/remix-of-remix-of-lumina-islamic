@@ -1,7 +1,7 @@
 // Romanian Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const ro: TranslationKeys = {
+export const ro: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Companionul Tău Islamic' },
   nav: { home: 'Acasă', quran: 'Coran', hadith: 'Hadith', rulings: 'Reguli', sound: 'Audio', counters: 'Contoare', settings: 'Setări' },
   home: { prayerTimes: 'Orele de Rugăciune', nextPrayer: 'Următoarea Rugăciune', hijriCalendar: 'Calendar Hijri', today: 'Astăzi', fajr: 'Fajr', sunrise: 'Răsărit', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' },

@@ -1,7 +1,7 @@
 // Japanese Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const ja: TranslationKeys = {
+export const ja: PartialTranslation = {
   app: { name: 'Islami', tagline: 'あなたのイスラムの伴侶' },
   nav: { home: 'ホーム', quran: 'クルアーン', hadith: 'ハディース', rulings: '法規定', sound: 'オーディオ', counters: 'カウンター', settings: '設定' },
   home: { prayerTimes: '礼拝時間', nextPrayer: '次の礼拝', hijriCalendar: 'ヒジュラ暦', today: '今日', fajr: 'ファジュル', sunrise: '日の出', dhuhr: 'ズフル', asr: 'アスル', maghrib: 'マグリブ', isha: 'イシャー' },
