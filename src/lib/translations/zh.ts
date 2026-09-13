@@ -15,6 +15,7 @@ export const zh: TranslationKeys = {
   quran: { title: '古兰经', searchPlaceholder: '搜索章节或经文...', bookmarks: '书签', lastRead: '上次阅读', comingSoon: '即将推出', contentComingSoon: '古兰经内容将在此添加' },
   hadith: { title: '圣训', searchPlaceholder: '搜索圣训...', sahihBukhari: '布哈里圣训', sahihMuslim: '穆斯林圣训', comingSoon: '即将推出', contentComingSoon: '先知ﷺ的圣训将在此添加',
     collections: '圣训集', selectCollection: '选择圣训集', sections: '章节', selectSection: '选择章节', hadithNumber: '圣训编号', arabicText: '阿拉伯文', translation: '翻译', loadingHadiths: '正在加载圣训...', errorLoading: '加载时出错', noHadiths: '本章节无圣训', totalHadiths: '圣训总数', allCollections: '全部圣训集', backToCollections: '返回圣训集', backToSections: '返回章节',
+    noCertifiedTranslation: 'No certified translation of this book is available in your language yet.', arabicIsSource: 'The Arabic text is the original source.', showEnglishTranslation: 'Show the certified English translation', translationAvailable: 'Translation available', translationUnavailable: 'No translation in your language', translationLanguage: 'Translation language',
   },
   sound: { title: '诵读', selectReciter: '选择诵读者', reciters: '诵读者', recitations: '古兰经诵读', murattal: '慢诵', mujawwad: '美诵' },
   rulings: { title: '教法', searchPlaceholder: '搜索教法...', prayerRulings: '礼拜教法', fastingRulings: '斋戒教法', zakatRulings: '天课教法', hajjRulings: '朝觐教法', breastfeedingRulings: '哺乳教法', purificationRulings: '净化教法', comingSoon: '即将推出' },

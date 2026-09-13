@@ -179,6 +179,7 @@ export const ar = {
     allCollections: 'كل الكتب',
     backToCollections: 'العودة للكتب',
     backToSections: 'العودة للفصول',
+    noCertifiedTranslation: 'لا توجد ترجمة معتمدة لهذا الكتاب بلغتك حتى الآن.', arabicIsSource: 'النص العربي هو الأصل المعتمد.', showEnglishTranslation: 'اعرض الترجمة الإنجليزية المعتمدة', translationAvailable: 'ترجمة متوفرة', translationUnavailable: 'لا توجد ترجمة بلغتك', translationLanguage: 'لغة الترجمة',
   },
 
   // الصوت

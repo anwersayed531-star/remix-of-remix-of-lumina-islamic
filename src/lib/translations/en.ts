@@ -158,6 +158,7 @@ export const en: TranslationKeys = {
     allCollections: 'All Collections',
     backToCollections: 'Back to collections',
     backToSections: 'Back to chapters',
+    noCertifiedTranslation: 'No certified translation of this book is available in your language yet.', arabicIsSource: 'The Arabic text is the original source.', showEnglishTranslation: 'Show the certified English translation', translationAvailable: 'Translation available', translationUnavailable: 'No translation in your language', translationLanguage: 'Translation language',
   },
   sound: {
     title: 'Recitations',
