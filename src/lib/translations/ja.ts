@@ -15,6 +15,7 @@ export const ja: TranslationKeys = {
   quran: { title: '聖クルアーン', searchPlaceholder: 'スーラまたは節を検索...', bookmarks: 'ブックマーク', lastRead: '最後に読んだ所', comingSoon: '近日公開', contentComingSoon: 'クルアーンの内容がここに追加されます' },
   hadith: { title: 'ハディース', searchPlaceholder: 'ハディースを検索...', sahihBukhari: 'サヒーフ・アル＝ブハーリー', sahihMuslim: 'サヒーフ・ムスリム', comingSoon: '近日公開', contentComingSoon: '預言者ﷺのハディースがここに追加されます',
     collections: 'コレクション', selectCollection: 'コレクションを選択', sections: '章', selectSection: '章を選択', hadithNumber: 'ハディース番号', arabicText: 'アラビア語テキスト', translation: '翻訳', loadingHadiths: 'ハディースを読み込み中...', errorLoading: '読み込みエラー', noHadiths: 'この章にハディースはありません', totalHadiths: '合計ハディース', allCollections: 'すべてのコレクション', backToCollections: 'コレクションに戻る', backToSections: '章に戻る',
+    noCertifiedTranslation: 'No certified translation of this book is available in your language yet.', arabicIsSource: 'The Arabic text is the original source.', showEnglishTranslation: 'Show the certified English translation', translationAvailable: 'Translation available', translationUnavailable: 'No translation in your language', translationLanguage: 'Translation language',
   },
   sound: { title: '朗唱', selectReciter: '朗唱者を選択', reciters: '朗唱者', recitations: 'クルアーン朗唱', murattal: 'ムラッタル', mujawwad: 'ムジャッワド' },
   rulings: { title: '法規定', searchPlaceholder: '法規定を検索...', prayerRulings: '礼拝の法規定', fastingRulings: '断食の法規定', zakatRulings: 'ザカートの法規定', hajjRulings: 'ハッジの法規定', breastfeedingRulings: '授乳の法規定', purificationRulings: '浄化の法規定', comingSoon: '近日公開' },

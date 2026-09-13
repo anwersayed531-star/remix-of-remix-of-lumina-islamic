@@ -15,6 +15,7 @@ export const ko: TranslationKeys = {
   quran: { title: '거룩한 꾸란', searchPlaceholder: '수라 또는 구절 검색...', bookmarks: '북마크', lastRead: '마지막 읽은 곳', comingSoon: '곧 출시', contentComingSoon: '꾸란 내용이 여기에 추가됩니다' },
   hadith: { title: '하디스', searchPlaceholder: '하디스 검색...', sahihBukhari: '사히흐 알부카리', sahihMuslim: '사히흐 무슬림', comingSoon: '곧 출시', contentComingSoon: '예언자ﷺ의 하디스가 여기에 추가됩니다',
     collections: '컬렉션', selectCollection: '컬렉션 선택', sections: '장', selectSection: '장 선택', hadithNumber: '하디스 번호', arabicText: '아랍어 본문', translation: '번역', loadingHadiths: '하디스 로딩 중...', errorLoading: '로딩 중 오류', noHadiths: '이 장에 하디스가 없습니다', totalHadiths: '총 하디스', allCollections: '모든 컬렉션', backToCollections: '컬렉션으로 돌아가기', backToSections: '장으로 돌아가기',
+    noCertifiedTranslation: 'No certified translation of this book is available in your language yet.', arabicIsSource: 'The Arabic text is the original source.', showEnglishTranslation: 'Show the certified English translation', translationAvailable: 'Translation available', translationUnavailable: 'No translation in your language', translationLanguage: 'Translation language',
   },
   sound: { title: '낭독', selectReciter: '낭독자 선택', reciters: '낭독자', recitations: '꾸란 낭독', murattal: '무랏탈', mujawwad: '무자와드' },
   rulings: { title: '율법', searchPlaceholder: '율법 검색...', prayerRulings: '예배 율법', fastingRulings: '단식 율법', zakatRulings: '자카트 율법', hajjRulings: '하즈 율법', breastfeedingRulings: '수유 율법', purificationRulings: '정화 율법', comingSoon: '곧 출시' },

@@ -154,7 +154,22 @@ const HadithPage = () => {
                   <p className="text-xs text-muted-foreground font-cairo mt-0.5">
                     {book.totalHadiths} {t.hadith.totalHadiths}
                   </p>
+                  {language !== 'ar' && (
+                    <span
+                      className={`inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full text-[10px] font-cairo ${
+                        getAvailableTranslation(book.id, language).available
+                          ? 'bg-primary/10 text-primary'
+                          : 'bg-muted text-muted-foreground'
+                      }`}
+                    >
+                      <Languages className="w-3 h-3" />
+                      {getAvailableTranslation(book.id, language).available
+                        ? `${t.hadith.translationAvailable} — ${getAvailableTranslation(book.id, language).languageLabel}`
+                        : t.hadith.translationUnavailable}
+                    </span>
+                  )}
                 </div>
+
                 <ChevronRight className="w-5 h-5 text-muted-foreground shrink-0 rtl:rotate-180" />
               </CardContent>
             </Card>
