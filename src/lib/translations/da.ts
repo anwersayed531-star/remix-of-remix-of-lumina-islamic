@@ -1,7 +1,7 @@
 // Danish Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const da: TranslationKeys = {
+export const da: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Din Islamiske Ledsager' },
   nav: { home: 'Hjem', quran: 'Koranen', hadith: 'Hadith', rulings: 'Regler', sound: 'Lyd', counters: 'Tællere', settings: 'Indstillinger' },
   home: { prayerTimes: 'Bønnetider', nextPrayer: 'Næste Bøn', hijriCalendar: 'Hijrikalender', today: 'I dag', fajr: 'Fajr', sunrise: 'Solopgang', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' },

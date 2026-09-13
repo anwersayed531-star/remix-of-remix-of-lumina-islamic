@@ -1,7 +1,7 @@
 // German Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const de: TranslationKeys = {
+export const de: PartialTranslation = {
   app: {
     name: 'Islami',
     tagline: 'Dein islamischer Begleiter',

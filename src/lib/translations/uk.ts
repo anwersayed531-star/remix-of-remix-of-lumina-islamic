@@ -1,7 +1,7 @@
 // Ukrainian Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const uk: TranslationKeys = {
+export const uk: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Твій Ісламський Супутник' },
   nav: { home: 'Головна', quran: 'Коран', hadith: 'Хадис', rulings: 'Правила', sound: 'Аудіо', counters: 'Лічильники', settings: 'Налаштування' },
   home: { prayerTimes: 'Час Молитви', nextPrayer: 'Наступна Молитва', hijriCalendar: 'Хіджрі Календар', today: 'Сьогодні', fajr: 'Фаджр', sunrise: 'Схід', dhuhr: 'Зухр', asr: 'Аср', maghrib: 'Магріб', isha: 'Іша' },

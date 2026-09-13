@@ -1,7 +1,7 @@
 // Italian Translation
-import type { TranslationKeys } from './ar';
+import type { PartialTranslation } from './types';
 
-export const it: TranslationKeys = {
+export const it: PartialTranslation = {
   app: { name: 'Islami', tagline: 'Il Tuo Compagno Islamico' },
   nav: { home: 'Home', quran: 'Corano', hadith: 'Hadith', rulings: 'Norme', sound: 'Audio', counters: 'Contatori', settings: 'Impostazioni' },
   home: { prayerTimes: 'Orari di Preghiera', nextPrayer: 'Prossima Preghiera', hijriCalendar: 'Calendario Hijri', today: 'Oggi', fajr: 'Fajr', sunrise: 'Alba', dhuhr: 'Dhuhr', asr: 'Asr', maghrib: 'Maghrib', isha: 'Isha' },
