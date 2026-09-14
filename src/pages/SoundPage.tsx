@@ -172,15 +172,11 @@ const SoundPage = () => {
       <Card className="border-0 shadow-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground">
         <CardContent className="p-6">
           <div className="text-center mb-4">
-            <div
-              className="w-20 h-20 mx-auto mb-3 rounded-full flex items-center justify-center overflow-hidden"
-              style={{ backgroundColor: currentReciterInfo.color }}
-            >
+            <div className="w-20 h-20 mx-auto mb-3 rounded-full flex items-center justify-center overflow-hidden bg-background/15 p-2">
               <img 
-                src={currentReciterInfo.imageUrl || logoImg} 
-                alt={currentReciterInfo.nameAr} 
-                className="w-full h-full object-cover" 
-                onError={(e) => { e.currentTarget.src = logoImg; }}
+                src={logoImg}
+                alt={t.app.name}
+                className="w-full h-full object-contain"
               />
             </div>
             <h3 className="font-amiri text-xl font-bold">
@@ -264,15 +260,11 @@ const SoundPage = () => {
             }}
           >
             <CardContent className="p-4 flex items-center gap-4">
-              <div
-                className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
-                style={{ backgroundColor: reciter.color }}
-              >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden bg-muted p-1.5">
                 <img 
-                  src={reciter.imageUrl || logoImg} 
-                  alt={reciter.nameAr} 
-                  className="w-full h-full object-cover" 
-                  onError={(e) => { e.currentTarget.src = logoImg; }}
+                  src={logoImg}
+                  alt={t.app.name}
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="flex-1">

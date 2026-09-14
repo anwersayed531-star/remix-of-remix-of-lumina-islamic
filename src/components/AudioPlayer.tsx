@@ -47,17 +47,13 @@ const AudioPlayer = ({
       </div>
 
       <div className="flex items-center gap-3">
-        {/* Reciter avatar */}
+        {/* App logo */}
         {reciterInfo && (
-          <div
-            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden"
-            style={{ backgroundColor: reciterInfo.color }}
-          >
+          <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden bg-muted p-1">
             <img 
-              src={reciterInfo.imageUrl || logoImg} 
-              alt={reciterInfo.nameAr} 
-              className="w-full h-full object-cover" 
-              onError={(e) => { e.currentTarget.src = logoImg; }}
+              src={logoImg}
+              alt="Islamiyya"
+              className="w-full h-full object-contain"
             />
           </div>
         )}
